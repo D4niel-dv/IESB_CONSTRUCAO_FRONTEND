@@ -1,5 +1,8 @@
+
 import MeusComponentes from './MeusComponentes'
 import NumeroMaior from './NumeroMaior'
+import NumeroAleatorio from './NumeroAleatorio'
+import Cabecalho from './Cabecalho'
 
 export default function Fundamentos(){
 
@@ -19,9 +22,24 @@ return (
 
 <NumeroMaior />
 
+<hr />
+
+ 
+<NumeroAleatorio />
+<NumeroAleatorio />
+<NumeroAleatorio />
+<NumeroAleatorio />
+
+<hr></hr>
+
+
+<Cabecalho />
 
 </div>
     
+
+
+
 
     )
 
