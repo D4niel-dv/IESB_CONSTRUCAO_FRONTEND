@@ -24,3 +24,9 @@ $ npx create-next-app 03-fundamentos
 √ Would you like to use `src/` directory? ... No / Yes
 √ Would you like to use App Router? (recommended) ... No / Yes
 √ Would you like to customize the default import alias (@/*)? ... No / Yes
+
+
+
+instalar react bootstrap
+
+npm install react-bootstrap bootstrap

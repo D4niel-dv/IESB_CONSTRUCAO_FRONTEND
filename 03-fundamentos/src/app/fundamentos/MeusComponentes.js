@@ -1,11 +1,11 @@
-export default function MeusComponentes(){
+export default function MeuComponente() {
 
-return (
 
-<>
-<h1>MeusComponentes</h1>
-<p> texto dos meu MeusComponentes</p>
+    return (
+        <>
+            <h2>Meu Componente</h2>
+            <p>O texto do meu componente</p>
+        </>
+    )
 
-</>
-)  
 }
