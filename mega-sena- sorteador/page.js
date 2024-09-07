@@ -1,6 +1,6 @@
 import React, { useState } from 'react-bootstrap';
 import Logo from './components/logo';
-import NumeroAleatorio from 'NumeroAleatorio';
+import NumeroAleatorio from './components/NumeroAleatorio';
 
 import Link from 'next/link';
 
