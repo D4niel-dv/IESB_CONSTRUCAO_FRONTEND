@@ -1,6 +1,7 @@
 'use client'
 
 import { Container, Nav, Navbar } from "react-bootstrap"
+import { FaSearch, FaCar } from 'react-icons/fa'; // Importando ícones de busca e carro
 
 
 export default function Pagina({ titulo, children }) {
@@ -9,11 +10,16 @@ export default function Pagina({ titulo, children }) {
     <>
       {/* Barra de Navegação */}
       <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar.Brand href="/">
+  <FaCar /> 
+</Navbar.Brand>
+     
         <Container>
           <Navbar.Brand href="/">Home</Navbar.Brand>
           <Nav className="me-auto">
+
             <Nav.Link href="/cliente">Cliente</Nav.Link>
-            <Nav.Link href="/cursos">Marca</Nav.Link>
+            <Nav.Link href="/funcionarios">funcionarios</Nav.Link>
             <Nav.Link href="/disciplinas">modelo</Nav.Link>
             <Nav.Link href="/professores">Professores</Nav.Link>
             <Nav.Link href="/alunos"></Nav.Link>
