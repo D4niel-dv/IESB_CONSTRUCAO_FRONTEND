@@ -6,30 +6,30 @@ import { useEffect, useState } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { FaPen, FaPlusCircle, FaTrash } from 'react-icons/fa'
 
-export default function ProfessoresPage() {
+export default function VeiculosPage() {
 
-  const [professores, setProfessores] = useState([])
+  const [veiculos, setVeiculos] = useState([])
 
   // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
-    const professoresLocalStorage = JSON.parse(localStorage.getItem("professores")) || []
+    const veiculosLocalStorage = JSON.parse(localStorage.getItem("veiculos")) || []
     // guarda a lista no estado
-    setProfessores(professoresLocalStorage)
-    console.log(professoresLocalStorage)
+    setVeiculos(veiculosLocalStorage)
+    console.log(veiculosLocalStorage)
   }, [])
 
   // Função para exclusão do item
-  function excluir(professor) {
+  function excluir(veiculo) {
     // Confirma com o usuário a exclusão
-    if (window.confirm(`Deseja realmente excluir o professor ${professor.nome}?`)) {
+    if (window.confirm(`Deseja realmente excluir o veiculo ${veiculo.nome}?`)) {
       // filtra a lista antiga removando o professor recebido
-      const novaLista = professores.filter(item => item.id !== professor.id)
+      const novaLista = veiculos.filter(item => item.id !== veiculo.id)
       // grava no localStorage a nova lista
-      localStorage.setItem('professores', JSON.stringify(novaLista))
+      localStorage.setItem('veiculos', JSON.stringify(novaLista))
       // grava a nova lista no estado para renderizar na tela
-      setProfessores(novaLista)
-      alert("Professor excluído com sucesso!")
+      setVeiculos(novaLista)
+      alert("Veiculo excluído com sucesso!")
     }
   }
 
@@ -44,25 +44,31 @@ export default function ProfessoresPage() {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Matricula</th>
-            <th>Status</th>
-            <th>Curso</th>
-            <th>Ações</th>
+            <th>modelo</th>
+            <th>Ano</th>
+            <th>Quilometragem</th>
+            <th>combustivel</th>
+            <th>Placa</th>
+            <th>cor</th>
+            <th>tipo</th>
+            <th>status</th>
           </tr>
         </thead>
         <tbody>
-          {professores.map(professor => {
+          {veiculos.map(veiculo => {
             return (
               <tr>
-                <td>{professor.nome}</td>
-                <td>{professor.matricula}</td>
-                <td>{professor.status}</td>
-                <td>{professor.curso}</td>
+                <td>{veiculo.modelo}</td>
+                <td>{veiculo.ano}</td>
+                <td>{veiculo.combustivel}</td>
+                <td>{veiculo.placa}</td>
+                <td>{veiculo.cor}</td>
+                <td>{veiculo.tipo}</td>
+                <td>{veiculo.status}</td>
                 <td className='text-center'>
                   {/* Botões das ações */}
                   <Button className='me-2' href={`/veiculos/form?id=${veiculos.id}`}><FaPen /></Button>
-                  <Button variant='danger' onClick={() => excluir(professor)}><FaTrash /></Button>
+                  <Button variant='danger' onClick={() => excluir(veiculo)}><FaTrash /></Button>
 
                 </td>
               </tr>
