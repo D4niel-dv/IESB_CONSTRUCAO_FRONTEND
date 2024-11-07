@@ -62,5 +62,7 @@ export default function HomePage() {
 
       </Row>
     </Pagina>
+
+    
   )
 }
