@@ -8,63 +8,69 @@ import { FaPen, FaPlusCircle, FaTrash } from 'react-icons/fa'
 
 export default function ClientePage() {
 
-  const [cursos, setCursos] = useState([])
+  const [clientes, setClientes] = useState([])
 
   // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
-    const cursosLocalStorage = JSON.parse(localStorage.getItem("cursos")) || []
+    const clientesLocalStorage = JSON.parse(localStorage.getItem("clientes")) || []
     // guarda a lista no estado faculdades
-    setCursos(cursosLocalStorage)
-    console.log(cursosLocalStorage)
+    setClientes(clientesLocalStorage)
+    console.log(clientesLocalStorage)
   }, [])
 
   // Função para exclusão do item
-  function excluir(curso) {
+  function excluir(cliente) {
     // Confirma com o usuário a exclusão
-    if (window.confirm(`Deseja realmente excluir o curso ${curso.nome}?`)) {
-      // filtra a lista antiga removando o curso recebido
-      const novaLista = cursos.filter(item => item.id !== curso.id)
+    if (window.confirm(`Deseja realmente excluir o cliente ${cliente.nome}?`)) {
+      
+      const novaLista = clientes.filter(item => item.id !== cliente.id)
       // grava no localStorage a nova lista
-      localStorage.setItem('cursos', JSON.stringify(novaLista))
+      localStorage.setItem('clientes', JSON.stringify(novaLista))
       // grava a nova lista no estado para renderizar na tela
-      setCursos(novaLista)
-      alert("Curso excluído com sucesso!")
+      setClientes(novaLista)
+      alert("Cliente excluído com sucesso!")
     }
   }
 
 
   return (
-    <Pagina titulo={"Lista de Cursos"}>
+    <Pagina titulo={"formularios dos clientes"}>
       <div className='text-end mb-2'>
         <Button href='/cliente/form'><FaPlusCircle /> Novo</Button>
       </div>
 
-      {/* Tabela com os Cursos */}
+     
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Area</th>
-            <th>Nota</th>
+            <th>Nome Completo</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Data de Nascimento</th>
+            <th>Endereço</th>
+            <th>Cidade</th>
+            <th>Estado</th>
             <th>Status</th>
-            <th>Faculdade</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {cursos.map(curso => {
+          {clientes.map(cliente => {
             return (
               <tr>
-                <td>{curso.nome}</td>
-                <td>{curso.area}</td>
-                <td>{curso.nota}</td>
-                <td>{curso.status}</td>
-                <td>{curso.faculdade}</td>
+                <td>{cliente.nome}</td>
+                <td>{cliente.email}</td>
+                <td>{cliente.telefone}</td>
+                <td>{cliente.dataNascimento}</td>
+                <td>{cliente.endereco}</td>
+                <td>{cliente.cidade}</td>
+                <td>{cliente.estado}</td>
+                <td>{cliente.status}</td>
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/cursos/form?id=${curso.id}`}><FaPen /></Button>
-                  <Button variant='danger' onClick={() => excluir(curso)}><FaTrash /></Button>
+                  <Button className='me-2' href={`/cliente/form?id=${cliente.id}`}><FaPen /></Button>
+                  <Button variant='danger' onClick={() => excluir(cliente)}><FaTrash /></Button>
                 </td>
               </tr>
             )

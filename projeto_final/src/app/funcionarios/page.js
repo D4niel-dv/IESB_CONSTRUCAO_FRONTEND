@@ -6,38 +6,38 @@ import { useEffect, useState } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { FaPen, FaPlusCircle, FaTrash } from 'react-icons/fa'
 
-export default function ProfessoresPage() {
+export default function FuncionariosPage() {
 
-  const [professores, setProfessores] = useState([])
+  const [funcionarios, setFuncionarios] = useState([])
 
   // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
-    const professoresLocalStorage = JSON.parse(localStorage.getItem("professores")) || []
+    const funcionariosLocalStorage = JSON.parse(localStorage.getItem("funcionarios")) || []
     // guarda a lista no estado
-    setProfessores(professoresLocalStorage)
-    console.log(professoresLocalStorage)
+    setFuncionarios(funcionariosLocalStorage)
+    console.log(funcionariosLocalStorage)
   }, [])
 
   // Função para exclusão do item
-  function excluir(professor) {
+  function excluir(funcionario) {
     // Confirma com o usuário a exclusão
-    if (window.confirm(`Deseja realmente excluir o professor ${professor.nome}?`)) {
+    if (window.confirm(`Deseja realmente excluir o funcionarios ${funcionario.nome}?`)) {
       // filtra a lista antiga removando o professor recebido
-      const novaLista = professores.filter(item => item.id !== professor.id)
+      const novaLista = funcionarios.filter(item => item.id !== funcionario.id)
       // grava no localStorage a nova lista
-      localStorage.setItem('professores', JSON.stringify(novaLista))
+      localStorage.setItem('funcionarios', JSON.stringify(novaLista))
       // grava a nova lista no estado para renderizar na tela
-      setProfessores(novaLista)
-      alert("Professor excluído com sucesso!")
+      setFuncionarios(novaLista)
+      alert("Funcionário excluído com sucesso!")
     }
   }
 
 
   return (
-    <Pagina titulo={"Lista de Professores"}>
+    <Pagina titulo={"formulario dos funcionarios"}>
       <div className='text-end mb-2'>
-        <Button href='/professores/form'><FaPlusCircle /> Novo</Button>
+        <Button href='/funcionarios/form'><FaPlusCircle /> Novo</Button>
       </div>
 
       {/* Tabela com os Professores */}
@@ -46,23 +46,32 @@ export default function ProfessoresPage() {
           <tr>
             <th>Nome</th>
             <th>Matricula</th>
-            <th>Status</th>
-            <th>Curso</th>
-            <th>Ações</th>
+            <th>Cargo</th>
+            <th>endereço</th>
+            <th>Data de Nascimento</th>
+            <th>status</th>
+            <th>Telefone</th>
+            <th>Email</th>
+           
           </tr>
         </thead>
         <tbody>
-          {professores.map(professor => {
+          {funcionarios.map(funcionario => {
             return (
               <tr>
-                <td>{professor.nome}</td>
-                <td>{professor.matricula}</td>
-                <td>{professor.status}</td>
-                <td>{professor.curso}</td>
+                <td>{funcionario.nome}</td>
+                <td>{funcionario.matricula}</td>
+                <td>{funcionario.cargo}</td>
+                <td>{funcionario.endereco}</td>
+                <td>{funcionario.dataNascimento}</td>
+                <td>{funcionario.status}</td>
+                <td>{funcionario.telefone}</td>
+                <td>{funcionario.email}</td>
+              
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/professores/form?id=${professor.id}`}><FaPen /></Button>
-                  <Button variant='danger' onClick={() => excluir(professor)}><FaTrash /></Button>
+                  <Button className='me-2' href={`/funcionarios/form?id=${funcionario.id}`}><FaPen /></Button>
+                  <Button variant='danger' onClick={() => excluir(funcionario)}><FaTrash /></Button>
 
                 </td>
               </tr>

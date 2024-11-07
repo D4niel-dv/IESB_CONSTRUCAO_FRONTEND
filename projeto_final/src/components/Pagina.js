@@ -20,7 +20,7 @@ export default function Pagina({ titulo, children }) {
 
             <Nav.Link href="/cliente">Cliente</Nav.Link>
             <Nav.Link href="/funcionarios">funcionarios</Nav.Link>
-            <Nav.Link href="/disciplinas">modelo</Nav.Link>
+            <Nav.Link href="/veiculos">veiculos</Nav.Link>
             <Nav.Link href="/professores">Professores</Nav.Link>
             <Nav.Link href="/alunos"></Nav.Link>
           </Nav>

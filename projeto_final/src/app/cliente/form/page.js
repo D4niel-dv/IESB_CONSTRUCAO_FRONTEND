@@ -14,7 +14,7 @@ export default function ClienteFormPage(props) {
   const router = useRouter()
 
   // Busca a lista de clientes no localStorage
-  const clientes = JSON.parse(localStorage.getItem('cliente')) || []
+  const clientes = JSON.parse(localStorage.getItem('clientes')) || []
 
   // Recuperando id para edição
   const id = props.searchParams.id
@@ -29,13 +29,13 @@ export default function ClienteFormPage(props) {
     if (clienteEditado) {
       Object.assign(clienteEditado, dados)
       // Substitui a lista antiga pela nova no localStorage
-      localStorage.setItem('cliente', JSON.stringify(clientes))
+      localStorage.setItem('clientes', JSON.stringify(clientes))
     } else {
       // Se clienteEditado não existe, é criação de um novo cliente
       dados.id = v4()  // Gerar um ID único para o cliente
       clientes.push(dados)
       // Substitui a lista antiga pela nova no localStorage
-      localStorage.setItem('cliente', JSON.stringify(clientes))
+      localStorage.setItem('clientes', JSON.stringify(clientes))
     }
 
     alert("Cliente cadastrado com sucesso!")
