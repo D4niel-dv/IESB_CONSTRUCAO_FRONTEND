@@ -1,85 +1,78 @@
 'use client'
 
-
 import Pagina from '@/components/Pagina'
 import { useEffect, useState } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { FaPen, FaPlusCircle, FaTrash } from 'react-icons/fa'
 
-export default function ClientePage() {
+export default function VendasPage() {  // Renomeei para VendasPage para indicar que estamos lidando com vendas
 
-  const [clientes, setClientes] = useState([])
+  const [vendas, setVendas] = useState([])  // Alterei 'clientes' para 'vendas', já que estamos tratando de vendas
 
   // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
-    const clientesLocalStorage = JSON.parse(localStorage.getItem("clientes")) || []
-    // guarda a lista no estado faculdades
-    setClientes(clientesLocalStorage)
-    console.log(clientesLocalStorage)
+    const vendasLocalStorage = JSON.parse(localStorage.getItem("vendas")) || []  // Buscando 'vendas' no localStorage
+    // Guarda a lista no estado vendas
+    setVendas(vendasLocalStorage)
+    console.log(vendasLocalStorage)
   }, [])
 
   // Função para exclusão do item
-  function excluir(cliente) {
+  function excluir(venda) {  // Alterei para 'venda' para se referir corretamente ao item
     // Confirma com o usuário a exclusão
-    if (window.confirm(`Deseja realmente excluir o cliente ${cliente.nome}?`)) {
-      
-      const novaLista = clientes.filter(item => item.id !== cliente.id)
-      // grava no localStorage a nova lista
-      localStorage.setItem('clientes', JSON.stringify(novaLista))
-      // grava a nova lista no estado para renderizar na tela
-      setClientes(novaLista)
-      alert("Cliente excluído com sucesso!")
+    if (window.confirm(`Deseja realmente excluir a venda de ${venda.nome}?`)) {  // Exibindo nome da venda
+      const novaLista = vendas.filter(item => item.id !== venda.id)
+      // Grava no localStorage a nova lista
+      localStorage.setItem('vendas', JSON.stringify(novaLista))  // Armazenando a nova lista de vendas
+      // Grava a nova lista no estado para renderizar na tela
+      setVendas(novaLista)
+      alert("Venda excluída com sucesso!")
     }
   }
 
-
   return (
-    <Pagina titulo={"formularios dos clientes"}>
+    <Pagina titulo={"Formulários das Vendas"}>
       <div className='text-end mb-2'>
         <Button href='/vendas/form'><FaPlusCircle /> Novo</Button>
       </div>
 
-     
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Nome Completo</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-            <th>Data de Nascimento</th>
-            <th>Endereço</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Status</th>
+            <th>Nome Comprador</th>
+            <th>Email Comprador</th>
+            <th>Marca Veiculo</th>
+            <th>Preço Veiculo</th>
+            <th>Ano Veiculo</th>
+            <th>CPF Comprador</th>
+            <th>Placa Veiculo</th>
+            <th>Modelo Veiculo</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {clientes.map(cliente => {
+          {vendas.map(venda => {  // Aqui estamos usando 'vendas' corretamente
             return (
-              <tr>
-                <td>{cliente.nome}</td>
-                <td>{cliente.email}</td>
-                <td>{cliente.telefone}</td>
-                <td>{cliente.dataNascimento}</td>
-                <td>{cliente.endereco}</td>
-                <td>{cliente.cidade}</td>
-                <td>{cliente.estado}</td>
-                <td>{cliente.status}</td>
+              <tr key={venda.id}> {/* Chave única para cada linha */}
+                <td>{venda.nomeComprador}</td> {/* Nome do Comprador */}
+                <td>{venda.emailComprador}</td> {/* Email do Comprador */}
+                <td>{venda.veiculoMarca}</td> {/* Marca do Veículo */}
+                <td>{venda.veiculoPreco}</td> {/* Preço do Veículo */}
+                <td>{venda.veiculoAno}</td> {/* Ano do Veículo */}
+                <td>{venda.cpfComprador}</td> {/* CPF do Comprador */}
+                <td>{venda.veiculoPlaca}</td> {/* Placa do Veículo */}
+                <td>{venda.veiculoModelo}</td> {/* Modelo do Veículo */}
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/cliente/form?id=${cliente.id}`}><FaPen /></Button>
-                  <Button variant='danger' onClick={() => excluir(cliente)}><FaTrash /></Button>
+                  <Button className='me-2' href={`/vendas/form?id=${venda.id}`}><FaPen /></Button>
+                  <Button variant='danger' onClick={() => excluir(venda)}><FaTrash /></Button>
                 </td>
               </tr>
             )
           })}
         </tbody>
       </Table>
-
-
-
     </Pagina>
   )
 }

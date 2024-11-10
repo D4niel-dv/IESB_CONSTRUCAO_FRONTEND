@@ -22,7 +22,7 @@ export default function Pagina({ titulo, children }) {
           {/* Links de navegação */}
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="/" className="d-flex align-items-center">
+              <Nav.Link href="/dashboard" className="d-flex align-items-center">
                 <FaSearch size={18} className="me-2" /> Buscar
               </Nav.Link>
 

@@ -1,85 +1,73 @@
 'use client'
 
-
 import Pagina from '@/components/Pagina'
 import { useEffect, useState } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { FaPen, FaPlusCircle, FaTrash } from 'react-icons/fa'
 
-export default function ClientePage() {
+export default function FornecedoresPage() {
 
-  const [clientes, setClientes] = useState([])
+  const [fornecedores, setFornecedores] = useState([])  // Atualizando a variável para 'fornecedores'
 
-  // Faz alguma coisa quando o usuário acessa a tela
+  // Carrega a lista de fornecedores do localStorage ou inicia com um array vazio
   useEffect(() => {
-    // Busca a lista do localStorage, se não existir, inicia uma vazia
-    const clientesLocalStorage = JSON.parse(localStorage.getItem("clientes")) || []
-    // guarda a lista no estado faculdades
-    setClientes(clientesLocalStorage)
-    console.log(clientesLocalStorage)
+    const fornecedoresLocalStorage = JSON.parse(localStorage.getItem("fornecedores")) || []
+    setFornecedores(fornecedoresLocalStorage)  // Alterado para setFornecedores
+    console.log(fornecedoresLocalStorage)
   }, [])
 
   // Função para exclusão do item
-  function excluir(cliente) {
-    // Confirma com o usuário a exclusão
-    if (window.confirm(`Deseja realmente excluir o cliente ${cliente.nome}?`)) {
-      
-      const novaLista = clientes.filter(item => item.id !== cliente.id)
-      // grava no localStorage a nova lista
-      localStorage.setItem('clientes', JSON.stringify(novaLista))
-      // grava a nova lista no estado para renderizar na tela
-      setClientes(novaLista)
-      alert("Cliente excluído com sucesso!")
+  function excluir(fornecedor) {
+    if (window.confirm(`Deseja realmente excluir o fornecedor ${fornecedor.nome}?`)) {
+      const novaLista = fornecedores.filter(item => item.id !== fornecedor.id)  // Alterado para 'fornecedores'
+      localStorage.setItem('fornecedores', JSON.stringify(novaLista))  // Alterado para 'fornecedores'
+      setFornecedores(novaLista)  // Alterado para 'setFornecedores'
+      alert("Fornecedor excluído com sucesso!")
     }
   }
 
-
   return (
-    <Pagina titulo={"formularios dos clientes"}>
+    <Pagina titulo={"Formulários dos Fornecedores"}>
       <div className='text-end mb-2'>
         <Button href='/fornecedores/form'><FaPlusCircle /> Novo</Button>
       </div>
 
-     
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Nome Completo</th>
-            <th>E-mail</th>
+            <th>Nome da Empresa</th>
+            <th>Email</th>
             <th>Telefone</th>
-            <th>Data de Nascimento</th>
+            <th>Cnpj</th>
+            <th>Data de Início de Fornecimento</th>
+            <th>Status da Parceria</th>
             <th>Endereço</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Status</th>
+            <th>Responsável</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {clientes.map(cliente => {
+          {fornecedores.map(fornecedor => {
             return (
-              <tr>
-                <td>{cliente.nome}</td>
-                <td>{cliente.email}</td>
-                <td>{cliente.telefone}</td>
-                <td>{cliente.dataNascimento}</td>
-                <td>{cliente.endereco}</td>
-                <td>{cliente.cidade}</td>
-                <td>{cliente.estado}</td>
-                <td>{cliente.status}</td>
+              <tr key={fornecedor.id}> {/* Adicionando a chave única */}
+                <td>{fornecedor.nome}</td>
+                <td>{fornecedor.email}</td>
+                <td>{fornecedor.telefone}</td>
+                <td>{fornecedor.cnpj}</td>  {/* Alterando para 'cnpj' */}
+                <td>{fornecedor.dataInicio}</td>  {/* Alterando para 'dataInicio' */}
+                <td>{fornecedor.status}</td>  {/* Alterando para 'status' */}
+                <td>{fornecedor.endereco}</td>
+                <td>{fornecedor.responsavel}</td>  {/* Alterando para 'responsavel' */}
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/fonecedores/form?id=${cliente.id}`}><FaPen /></Button>
-                  <Button variant='danger' onClick={() => excluir(cliente)}><FaTrash /></Button>
+                  <Button className='me-2' href={`/fornecedores/form?id=${fornecedor.id}`}><FaPen /></Button>
+                  <Button variant='danger' onClick={() => excluir(fornecedor)}><FaTrash /></Button>
                 </td>
               </tr>
             )
           })}
         </tbody>
       </Table>
-
-
-
     </Pagina>
   )
 }

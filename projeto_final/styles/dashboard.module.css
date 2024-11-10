@@ -1,0 +1,14 @@
+/* /styles/dashboard.module.css */
+
+.pagina-container {
+    padding: 2rem;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  .sales-chart {
+    margin-top: 2rem;
+  }
+  
