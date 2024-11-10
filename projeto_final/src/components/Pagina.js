@@ -13,7 +13,7 @@ export default function Pagina({ titulo, children }) {
           {/* Logo com ícone de carro */}
           <Navbar.Brand href="/" className="d-flex align-items-center">
             <FaCar size={28} className="me-2" />
-            <span className="fw-bold">Loja de Carros</span>
+            <span className="fw-bold">Loja de </span>
           </Navbar.Brand>
 
           {/* Toggle para dispositivos móveis */}
@@ -39,7 +39,7 @@ export default function Pagina({ titulo, children }) {
               </Nav.Link>
 
               <Nav.Link href="/fornecedores" className="d-flex align-items-center">
-                <FaTruck size={18} className="me-2" /> Fornecedores
+                <FaTruck size={18} className="me-2" /> Fornecedoress
               </Nav.Link>
 
               <Nav.Link href="/vendas" className="d-flex align-items-center">
