@@ -98,6 +98,7 @@ export default function VendasVeiculoFormPage(props) {
                 <Form.Group as={Col} md={6}>
                   <Form.Label>CPF do Comprador:</Form.Label>
                   <Form.Control
+                 
                     name="cpfComprador"
                     type="text"
                     value={values.cpfComprador}
@@ -106,7 +107,9 @@ export default function VendasVeiculoFormPage(props) {
                     isValid={touched.cpfComprador && !errors.cpfComprador}
                     isInvalid={touched.cpfComprador && errors.cpfComprador}
                     className="form-control-lg"
+                    
                   />
+                  
                   <Form.Control.Feedback type="invalid">{errors.cpfComprador}</Form.Control.Feedback>
                 </Form.Group>
               </Row>

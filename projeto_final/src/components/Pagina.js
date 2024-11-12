@@ -2,6 +2,7 @@
 
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { FaSearch, FaCar, FaUser, FaCog, FaList, FaPeopleArrows, FaTruck } from 'react-icons/fa'; // Ícones modernos
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 
 export default function Pagina({ titulo, children }) {
 
@@ -51,12 +52,12 @@ export default function Pagina({ titulo, children }) {
       </Navbar>
 
       {/* Barra de Título */}
-      <div className="bg-secondary text-center text-white py-3">
-        <h1>{titulo}</h1>
+      <div className="bg-danger text-center text-dark py-3" style={{ backgroundColor: '#FF5733' }} >
+        <h1 className="mb-0">{titulo}</h1>
       </div>
 
       {/* Conteúdo da Página */}
-      <Container className="mt-3">
+      <Container className="mt-4">
         {children}
       </Container>
     </>
