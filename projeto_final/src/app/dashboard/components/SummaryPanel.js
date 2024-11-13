@@ -3,9 +3,9 @@
 import { Card } from 'react-bootstrap'
 
 export default function SummaryPanel({ sales }) {
-  const totalSales = sales.length
-  const totalValue = sales.reduce((acc, sale) => acc + parseFloat(sale.veiculoPreco), 0)
-  const averageValue = totalValue / totalSales || 0
+  const totalSales = sales.length//total de vendas
+  const totalValue = sales.reduce((acc, sale) => acc + parseFloat(sale.veiculoPreco), 0)//valor total
+  const averageValue = totalValue / totalSales || 0 //Valor Médio
 
   return (
     <Card>
