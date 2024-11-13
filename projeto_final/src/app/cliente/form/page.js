@@ -5,7 +5,9 @@ import { Formik } from 'formik'
 import { useRouter } from 'next/navigation'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { FaArrowLeft, FaCheck } from "react-icons/fa"
+import ReactInputMask from 'react-input-mask'
 import { v4 } from 'uuid'
+
 import * as Yup from 'yup'
 
 export default function ClienteFormPage(props) {
@@ -112,9 +114,11 @@ export default function ClienteFormPage(props) {
               <Row className='mb-2'>
                 <Form.Group as={Col}>
                   <Form.Label>Telefone:</Form.Label>
-                  <Form.Control
+                  <Form.Control.Control as={ReactInputMask}
                     name='telefone'
                     type='text'
+                    mask={'99 9999-9999'}
+                    placeholder='99 9999-9999'
                     value={values.telefone}
                     onChange={handleChange}
                     onBlur={handleBlur}
