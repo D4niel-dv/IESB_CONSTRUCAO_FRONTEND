@@ -54,15 +54,15 @@ export default function VendasPage() {  // Renomeei para VendasPage para indicar
         <tbody>
           {vendas.map(venda => {  // Aqui estamos usando 'vendas' corretamente
             return (
-              <tr key={venda.id}> {/* Chave única para cada linha */}
-                <td>{venda.nomeComprador}</td> {/* Nome do Comprador */}
-                <td>{venda.emailComprador}</td> {/* Email do Comprador */}
-                <td>{venda.veiculoMarca}</td> {/* Marca do Veículo */}
-                <td>{venda.veiculoPreco}</td> {/* Preço do Veículo */}
-                <td>{venda.veiculoAno}</td> {/* Ano do Veículo */}
-                <td>{venda.cpfComprador}</td> {/* CPF do Comprador */}
-                <td>{venda.veiculoPlaca}</td> {/* Placa do Veículo */}
-                <td>{venda.veiculoModelo}</td> {/* Modelo do Veículo */}
+              <tr key={venda.id}> 
+                <td>{venda.nomeComprador}</td> 
+                <td>{venda.emailComprador}</td> 
+                <td>{venda.veiculoMarca}</td> 
+                <td>{venda.veiculoPreco}</td> 
+                <td>{venda.veiculoAno}</td> 
+                <td>{venda.cpfComprador}</td> 
+                <td>{venda.veiculoPlaca}</td> 
+                <td>{venda.veiculoModelo}</td> 
                 <td className='text-center'>
                   {/* Botões das ações */}
                   <Button className='me-2' href={`/vendas/form?id=${venda.id}`}><FaPen /></Button>

@@ -18,7 +18,7 @@ export default function SalesTable({ sales }) {
       <tbody>
         {sales.map((sale, index) => (
           <tr key={index}>
-            <td>{sale.compradorNome}</td>
+            <td>{sale.nomeComprador}</td>
             <td>{sale.veiculoMarca}</td>
             <td>{sale.veiculoModelo}</td>
             <td>{sale.veiculoAno}</td>

@@ -3,6 +3,7 @@
 import Pagina from '@/components/Pagina'
 import { Formik } from 'formik'
 import { useRouter } from 'next/navigation'
+import {ReactInputMask} from "react-input-mask"
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { FaArrowLeft, FaCheck } from "react-icons/fa"
 import { v4 } from 'uuid'
@@ -101,9 +102,12 @@ export default function FornecedorFormPage(props) {
 
                   <Form.Group as={Col}>
                     <Form.Label>CNPJ:</Form.Label>
-                    <Form.Control
+                    <Form.Control as={ReactInputMask}
                       name='cnpj'
                       type='text'
+                      mask={'99.999.999/9999-99'}
+                      placeholder='99.999.999/9999-99'
+                      maxLength={18}
                       value={values.cnpj}
                       onChange={handleChange}
                       onBlur={handleBlur}

@@ -15,6 +15,7 @@ export default function VeiculoFormPage(props) {
 
   // Busca a lista de veículos para usar no localStorage
   const veiculos = JSON.parse(localStorage.getItem('veiculos')) || []
+  
 
   // Recuperando id para edição
   const id = props.searchParams.id
